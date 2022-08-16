@@ -1,0 +1,32 @@
+{{ define "index.html" }}
+<link rel="stylesheet" type="text/css" href="/static/normalize.css">
+
+{{if .Back}}
+{{ template "back.html" . }}
+{{else}}
+{{ template "front.html" . }}
+{{end}}
+<hr>
+{{ if .Back }}
+<a href="/review/again/{{.Card.ID}}">Again</a>
+<a href="/review/pass/{{.Card.ID}}">Pass</a>
+{{ else }}
+<a href="/review/back/{{.Card.ID}}">Show back</a>
+{{ end }}
+
+{{ end }}
+
+{{ define "front.html" }}
+<p>{{.Card.Question}}</p>
+{{ end }}
+
+{{ define "back.html" }}
+{{template "front.html" .}}
+<hr>
+{{ .Card.Answer }}
+{{ end }}
+
+{{ define "congrats.html" }}
+<link rel="stylesheet" type="text/css" href="/static/normalize.css">
+Congrats! All cards done!
+{{ end }}
